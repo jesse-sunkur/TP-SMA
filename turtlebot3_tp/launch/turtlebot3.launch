@@ -1,0 +1,51 @@
+<launch>
+<arg name="model" default="waffle_pi"/>
+  <group ns = "TB1">
+    <param name="tf_prefix" value="TB1" />
+    <arg name="TB1" default="TB1"/>
+    <arg name="x1" default="-2.0"/>
+    <arg name="y1" default="0.5"/>
+    <arg name="z1" default="0.0"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  args="-urdf -model $(arg TB1) -x $(arg x1) -y $(arg y1) -z $(arg z1) -param robot_description" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+    <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+</group>
+
+<group ns = "TB2">
+  <param name="tf_prefix" value="TB2" />
+  <arg name="TB2" default="TB2"/>
+  <arg name="x2" default="-1.3"/>
+  <arg name="y2" default="1.5"/>
+  <arg name="z2" default="0.0"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  args="-urdf -model $(arg TB2) -x $(arg x2) -y $(arg y2) -z $(arg z2) -param robot_description" />
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+  <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+</group>
+
+<group ns = "TB3">
+  <param name="tf_prefix" value="TB3" />
+  <arg name="TB3" default="TB3"/>
+  <arg name="x3" default="1.3"/>
+  <arg name="y3" default="1.5"/>
+  <arg name="z3" default="0.0"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  args="-urdf -model $(arg TB3) -x $(arg x3) -y $(arg y3) -z $(arg z3) -param robot_description" />
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+  <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+</group>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+</launch>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find turtlebot3_tp)/launch/move_base.launch">
+  <arg name="robot_namespace" value="TB1" />
+  </include>
+
+  <include file="$(find turtlebot3_tp)/launch/move_base.launch">
+  <arg name="robot_namespace" value="TB2" />
+  </include>
+
+  <include file="$(find turtlebot3_tp)/launch/move_base.launch">
+  <arg name="robot_namespace" value="TB3" />
+  </include>
+
+</launch>
